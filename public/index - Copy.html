@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Application</title>
+</head>
+<body>
+    <div id="dashboard">
+        <form id="form" style="width: 100%">
+            <label>
+                Create a new room
+                <input type="text" id="roomInput" placeholder="Room #1" />
+                <input type="submit" value="Create" />
+            </label>
+        </form>
+        <div>
+            <label>
+                Type a room name to connect
+                <input id="connect-room" type="text" placeholder="Room #1" />
+                <button id="connect">Connect</button>
+            </label>
+        </div>
+        <ul id="roomsList"></ul>
+    </div>
+    <div id="stream" style='display:none'>
+        <video id="client" autoplay></video>
+        <video id="guest" autoplay></video>
+        <div>
+            <button id="hang-up">Hang up</button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+    <script>
+        // Specify your server's IP address and port
+        const serverAddress = 'https://fragrant-feather-40130.pktriot.net:3000'; // Use the correct protocol (http/https) and port
+
+        // Connect to the server
+        const socket = io(serverAddress);
+
+        // Handle connection event
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+
+        // Handle disconnection event
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+
+        // Handle custom events from the server
+        // Add your event handlers here
+
+        // Add your client-side JavaScript code here
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const roomName = document.getElementById('roomInput').value;
+            socket.emit('room', roomName);
+        });
+
+        document.getElementById('connect').addEventListener('click', function () {
+            const roomName = document.getElementById('connect-room').value;
+            // Connect to the specified room
+            // You can add your logic here to handle connecting to the room
+        });
+    </script>
+</body>
+</html>
