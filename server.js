@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3008;
 
 // paste your IP address of the local network
 //const HOST = "192.168.4.22";
-const HOST = "192.168.1.10";
+//const HOST = "192.168.1.10";
 
 // paste your IP address of the local network
 //const HOST = "92.14.175.166";
