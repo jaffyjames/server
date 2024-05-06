@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3008;
 // paste your IP address of the local network
 //const HOST = "92.14.175.166";
 
+const HOST = process.env.HOST || '0.0.0.0'; // Default to listening on all interfaces
 
 
 // specify the self-signed certificate for https connection
