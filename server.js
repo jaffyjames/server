@@ -1,10 +1,3 @@
-const express = require("express");
-const app = express();
-const fs = require("fs");
-const PORT = process.env.PORT || 3008;
-
-// paste your IP address of the local network
-//const HOST = "192.168.4.22";
 //const HOST = "192.168.1.10";
 
 // paste your IP address of the local network
@@ -12,13 +5,7 @@ const PORT = process.env.PORT || 3008;
 
 const HOST = process.env.HOST || '0.0.0.0'; // Default to listening on all interfaces
 
-
-// specify the self-signed certificate for https connection
-const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem")
-};
-const server = require("https").createServer(options, app);
+const server = require("http").createServer(app); // Use http module instead of https
 const io = require("socket.io")(server);
 
 app.use(express.static("public"));
